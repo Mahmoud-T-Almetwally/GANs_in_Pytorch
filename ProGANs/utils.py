@@ -6,8 +6,9 @@ import torchvision
 import config
 from torchvision.utils import save_image, make_grid
 
-def plot_to_tensorboard(writer, Loss_critic, real, fake, tensorboard_step):
+def plot_to_tensorboard(writer, Loss_gen, Loss_critic, real, fake, tensorboard_step):
     writer.add_scalar('Loss Critic', Loss_critic, global_step=tensorboard_step)
+    writer.add_scalar('Loss Gen', Loss_gen, global_step=tensorboard_step)
 
     with torch.no_grad():
         fake_imgs_grid = make_grid(fake[:8], normalize=True)
@@ -40,8 +41,8 @@ def gradient_penalty(critic, real, fake, alpha, train_step, device='cpu'):
 def save_checkpoint(model, optimizer, filename):
     print(f'-- Saving Checkpoint to => {filename}')
     checkpoint = {
-        'state_dict':model.state_dict,
-        'optimizer':optimizer.state_dict
+        'state_dict':model.state_dict(),
+        'optimizer':optimizer.state_dict()
     }
     torch.save(checkpoint, filename)
 

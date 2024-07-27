@@ -97,7 +97,7 @@ class Generator(nn.Module):
 
 
 class Discriminator(nn.Module):
-    def __init__(self, z_dim, in_channels, img_channels=3):
+    def __init__(self, in_channels, img_channels=3):
         super(Discriminator, self).__init__()
         self.prog_blocks, self.rgb_layers = nn.ModuleList([]), nn.ModuleList([])
         self.leaky = nn.LeakyReLU(0.2)
@@ -165,7 +165,7 @@ if __name__ == "__main__":
     Z_DIM = 100
     IN_CHANNELS = 256
     gen = Generator(Z_DIM, IN_CHANNELS, img_channels=3)
-    critic = Discriminator(Z_DIM, IN_CHANNELS, img_channels=3)
+    critic = Discriminator(IN_CHANNELS, img_channels=3)
 
     for img_size in [4, 8, 16, 32, 64, 128, 256, 512, 1024]:
         num_steps = int(log2(img_size / 4))
