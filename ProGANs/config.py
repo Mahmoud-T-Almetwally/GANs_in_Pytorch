@@ -4,7 +4,7 @@ from math import log2
 START_IMG_SIZE = 4
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 BATCH_SIZES = [16, 16, 16, 16, 16, 16, 16, 8, 4]
-DATASET = "C://Users//mhmtt//Downloads//Datasets//celeba_hq"
+DATASET = "Downloads//Datasets//celeba_hq"
 GEN_CHECKPOINT = 'ProGANS//checkpoints//gen_checkpoint.pth.tar'
 CRITIC_CHECKPOINT = 'ProGANS//checkpoints//critic_checkpoint.pth.tar'
 SAVE_MODEL = True
