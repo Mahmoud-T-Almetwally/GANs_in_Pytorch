@@ -53,11 +53,11 @@ class Generator(nn.Module):
     
 
 class Discriminator(nn.Module):
-    def __init__(self, img_channels=3, features=[64, 64, 128, 128, 256, 256, 512, 512]):
+    def __init__(self, in_channels=3, features=[64, 64, 128, 128, 256, 256, 512, 512]):
         super().__init__()
         blocks = []
         for idx, feature in enumerate(features):
-            blocks.append(ConvBlock(img_channels, feature, discriminator=True, use_bn=not (idx == 0), kernel_size=3, stride=1 + (idx % 2), padding=1))
+            blocks.append(ConvBlock(in_channels, feature, discriminator=True, use_bn=not (idx == 0), kernel_size=3, stride=1 + (idx % 2), padding=1))
             in_channels = feature
         
         self.blocks = nn.Sequential(*blocks)
